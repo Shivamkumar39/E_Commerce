@@ -11,7 +11,7 @@ export async function GET(request) {
         const user = await User.findById(userId)
 
         if(!user){
-            return NextResponse.json({success: false, message: "user not found"},{status: 404})
+            return NextResponse.json({success: false, message: "user not found"})
         }
     } catch (error) {
         return NextResponse.json({success: false, message: error.message})
