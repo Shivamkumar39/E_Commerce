@@ -10,11 +10,11 @@ const orderSchema  = new mongoose.Schema({
     address: { type: String, ref: 'address', required: true },
     status: { type: String, required: true, default: 'Order Placed' },
     date: { type: Number, required: true },
-    deliveryStatus: {
-        type: String,
-        enum: ['Delivered', 'Delivery Accept', 'Not Delivered'],
-        default: 'Dilivery Accept',
-      },
+    // deliveryStatus: {
+    //     type: String,
+    //     enum: ['Delivered', 'Delivery Accept', 'Not Delivered'],
+    //     default: 'Dilivery Accept',
+    // },
 })
 const Order = mongoose.models.order || mongoose.model('order', orderSchema)
 export default Order;
