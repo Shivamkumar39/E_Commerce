@@ -16,7 +16,7 @@ const OrderSummary = () => {
     try {
 
       const token = await getToken()
-      const {data} = await axios.get('/api/user/get-address', {headers: {Authorization: `Bearer ${token}` } })
+      const { data } = await axios.get('/api/user/get-address', { headers: { Authorization: `Bearer ${token}` } })
       if (data.success) {
         setUserAddresses(data.addresses)
         if (data.addresses.length > 0) {
@@ -37,36 +37,40 @@ const OrderSummary = () => {
 
   const createOrder = async () => {
     try {
-      if(!selectedAddress){
+      if (!selectedAddress) {
         return toast.error("please select an address");
       }
 
-      let cartItemsArray = Object.keys(cartItems).map((key)=>({product:key, quantity:cartItems[key]}))
+      let cartItemsArray = Object.keys(cartItems).map((key) => ({ product: key, quantity: cartItems[key] }))
 
       cartItemsArray = cartItemsArray.filter(item => item.quantity > 0)
-      if(cartItemsArray.length === 0){
+      if (cartItemsArray.length === 0) {
         return toast.error("cart is empty")
       }
       const token = await getToken()
-      const { data } = await axios.post('/api/order/create', {address: selectedAddress._id, items: cartItemsArray}, {headers: {Authorization: `Bearer ${token}`}});
+      const { data } = await axios.post('/api/order/create', { 
+        address: selectedAddress._id,
+        items: cartItemsArray
+      },{ headers: { Authorization: `Bearer ${token}` } });
+      console.log(data);
 
-      if(data.success){
+      if (data.success) {
         toast.success(data.message);
         setCartItems({})
         router.push('/order-placed')
-      }else{
-        toast.error("error")
+      } else {
+        toast.error(data.message)
       }
     } catch (error) {
       console.log(error);
-      
+
       toast.error(error.message)
 
     }
   }
 
   useEffect(() => {
-    if(user){
+    if (user) {
       fetchUserAddresses()
     }
   }, [user])
