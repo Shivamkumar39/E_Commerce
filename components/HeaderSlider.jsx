@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { assets } from "@/assets/assets";
 import Image from "next/image";
+import { FaCircle } from "react-icons/fa";
 
 const HeaderSlider = () => {
   const sliderData = [
@@ -45,6 +46,13 @@ const HeaderSlider = () => {
 
   return (
     <div className="overflow-hidden relative w-full">
+      <div className="m-4 flex items-center space-x-2">
+        <FaCircle className="text-red-600 animate-pulse" />
+        <span className="font-bold">Live</span>
+        <p className="font-bold bg-red-300 px-4 py-1 rounded-md">
+          Delivery is currently available only in Rajkot(Gujarat) city
+        </p>
+      </div>
       <div
         className="flex transition-transform duration-700 ease-in-out"
         style={{
@@ -87,9 +95,8 @@ const HeaderSlider = () => {
           <div
             key={index}
             onClick={() => handleSlideChange(index)}
-            className={`h-2 w-2 rounded-full cursor-pointer ${
-              currentSlide === index ? "bg-orange-600" : "bg-gray-500/30"
-            }`}
+            className={`h-2 w-2 rounded-full cursor-pointer ${currentSlide === index ? "bg-orange-600" : "bg-gray-500/30"
+              }`}
           ></div>
         ))}
       </div>

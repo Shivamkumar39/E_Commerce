@@ -40,18 +40,18 @@ const OrderSummary = () => {
         return toast.error("please select an address");
       }
 
-      let cartItemsArray =Object.keys(cartItems).map((key) => ({ product: key, quantity: cartItems[key] }))
+      let cartItemsArray = Object.keys(cartItems).map((key) => ({ product: key, quantity: cartItems[key] }))
 
       cartItemsArray = cartItemsArray.filter(item => item.quantity > 0)
       if (cartItemsArray.length === 0) {
         return toast.error("cart is empty")
       }
       const token = await getToken()
-      const { data } = await axios.post('/api/order/create',{ 
+      const { data } = await axios.post('/api/order/create', {
         address: selectedAddress._id,
         items: cartItemsArray
-      },{ headers: { Authorization: `Bearer ${token}` } });
-     
+      }, { headers: { Authorization: `Bearer ${token}` } });
+
 
       if (data.success) {
         toast.success(data.message);
@@ -148,10 +148,13 @@ const OrderSummary = () => {
             <p className="uppercase text-gray-600">Items {getCartCount()}</p>
             <p className="text-gray-800">{currency}{getCartAmount()}</p>
           </div>
-          <div className="flex justify-between">
+          <div className="flex justify-between items-center text-gray-800">
             <p className="text-gray-600">Shipping Fee</p>
-            <p className="font-medium text-gray-800">Free</p>
+            <p className="font-medium">
+              Free for the first 2-3 km, then ₹40 per 2-3 km thereafter.
+            </p>
           </div>
+
           <div className="flex justify-between">
             <p className="text-gray-600">Tax (2%)</p>
             <p className="font-medium text-gray-800">{currency}{Math.floor(getCartAmount() * 0.02)}</p>

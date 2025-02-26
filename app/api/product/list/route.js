@@ -1,4 +1,3 @@
-import { products } from "@/assets/productData";
 import connectDB from "@/config/db";
 import Product from "@/models/Product";
 import { NextResponse } from "next/server";
