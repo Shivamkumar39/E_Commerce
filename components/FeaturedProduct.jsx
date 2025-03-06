@@ -6,20 +6,20 @@ const products = [
   {
     id: 1,
     image: assets.girl_with_headphone_image,
-    title: "Unparalleled Sound",
-    description: "Experience crystal-clear audio with premium headphones.",
+    title: "Allway connected",
+    description: "Experience crystal-clear audio with premium medicine",
   },
   {
     id: 2,
     image: assets.girl_with_earphone_image,
     title: "Stay Connected",
-    description: "Compact and stylish earphones for every occasion.",
+    description: "24/7 connect with you all(in rajkot)",
   },
   {
     id: 3,
     image: assets.boy_with_laptop_image,
-    title: "Power in Every Pixel",
-    description: "Shop the latest laptops for work, gaming, and more.",
+    title: "+500 client Happy",
+    description: "Shop the on date medicine, medical kit, and more. deliver",
   },
 ];
 
